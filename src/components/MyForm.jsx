@@ -1,5 +1,4 @@
 import React from "react";
-// import cn from "classnames";
 
 const exampleUrl = "https://example.com/testing/things"
 
@@ -30,8 +29,7 @@ class MyForm extends React.Component {
     submitHandler = (e) => {
         e.preventDefault()
         e.stopPropagation()
-        const response =  fetch ({
-            url: exampleUrl,
+        const response =  fetch (exampleUrl,{
             method: 'POST',
             body: {...this.state}
         })
@@ -41,7 +39,7 @@ class MyForm extends React.Component {
         let stateCopy = {...this.state.formState}
 
         for (let item in stateCopy) {
-            // if (stateCopy[item] === "") throw new Error("Dude, fill all inputs!")
+            if (stateCopy[item] === "") throw new Error("Dude, fill all inputs!")
             console.log(item === "acceptRules")
             if (item === "acceptRules") stateCopy[item] = stateCopy[item].toString()
             this.sortedData.push([item, stateCopy[item]])
@@ -121,49 +119,6 @@ class MyForm extends React.Component {
                 </div>
             }
             </>
-
-            // <>
-            //     <form name="myForm" onSubmit={this.submitHandler}>
-            //         <div className="col-md-6 mb-3">
-            //             <label htmlFor="email" className="col-form-label">Email</label>
-            //             <input type="email" name="email" className="form-control" id="email" placeholder="Email" onChange={this.changeHandler}/>
-            //         </div>
-            //         <div className="form-group col-md-6">
-            //             <label htmlFor="password" className="col-form-label">Password</label>
-            //             <input type="password" name="password" className="form-control" id="password"
-            //                    placeholder="Password" onChange={this.changeHandler}/>
-            //         </div>
-            //         <div className="col-md-6 mb-3">
-            //             <label htmlFor="address" className="col-form-label">Address</label>
-            //             <textarea type="text" className="form-control" name="address" id="address"
-            //                       placeholder="1234 Main St" onChange={this.changeHandler}/>
-            //         </div>
-            //         <div className="col-md-6 mb-3">
-            //             <label htmlFor="city" className="col-form-label">City</label>
-            //             <input type="text" className="form-control" name="city" id="city" onChange={this.changeHandler}/>
-            //         </div>
-            //         <div className="col-md-6 mb-3">
-            //             <label htmlFor="country" className="col-form-label">Country</label>
-            //             <select id="country" name="country" className="form-control" onChange={this.changeHandler}>
-            //                 <option>Choose</option>
-            //                 <option value="argentina">Argentina</option>
-            //                 <option value="ukraine">Ukraine</option>
-            //                 <option value="china">China</option>
-            //             </select>
-            //         </div>
-            //         <div className="col-md-6 mb-3">
-            //             <div className="form-check">
-            //                 <label className="form-check-label" htmlFor="rules">
-            //                     <input id="rules" type="checkbox" name="acceptRules" className="form-check-input"
-            //                            checked={this.state.formState.acceptRules} onChange={this.changeHandler}/>
-            //                     Accept Rules
-            //                 </label>
-            //             </div>
-            //         </div>
-            //         <button type="submit" className="btn btn-primary">Sign in</button>
-            //     </form>
-            //     <Table props = {this.state}/>
-            // </>
         )
     }
 }
